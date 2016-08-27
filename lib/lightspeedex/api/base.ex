@@ -21,7 +21,7 @@ defmodule Lightspeedex.Api.Base do
   end
 
   defp handle_response(data, model) do
-    body = if model, do: JSON.decode_into!(data.body, model), else: JSON.decode!(data.body)
+    body = JSON.decode!(data.body, model)
 
     case data.status_code do
       200 -> %{
