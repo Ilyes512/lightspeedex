@@ -21,7 +21,17 @@ defmodule Lightspeedex.Api.Base do
   end
 
   defp handle_response(data, model) do
-    body = JSON.decode!(data.body, model)
+    decoded = JSON.decode!(data.body, model)
+
+    body =
+      cond do
+        is_map(decoded) && Enum.count(decoded) == 1
+          -> decoded
+             |> Map.values
+             |> List.first
+        true
+          -> decoded
+      end
 
     case data.status_code do
       200 -> %{
