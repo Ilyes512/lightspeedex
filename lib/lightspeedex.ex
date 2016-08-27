@@ -80,4 +80,16 @@ defmodule Lightspeedex do
          {"Content-Type", "application/json; charset=utf-8"}], status_code: 200}
   """
   defdelegate get_account, to: Lightspeedex.Api.Account, as: :get_account
+
+  defdelegate get_products(params \\ []), to: Lightspeedex.Api.Product, as: :get_products
+
+  defdelegate get_products_count(params \\ []), to: Lightspeedex.Api.Product, as: :get_products_count
+
+  defdelegate get_product(id), to: Lightspeedex.Api.Product, as: :get_product
+
+  defdelegate get_orders(params \\ []), to: Lightspeedex.Api.Order, as: :get_orders
+
+  defdelegate get_orders_count(params \\ []), to: Lightspeedex.Api.Order, as: :get_orders_count
+
+  defdelegate get_order(id), to: Lightspeedex.Api.Order, as: :get_order
 end
